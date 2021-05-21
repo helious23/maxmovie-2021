@@ -8,6 +8,11 @@ const link = new createHttpLink({
 const client = new ApolloClient({
   cache,
   link,
+  resolvers: {
+    Movie: {
+      isLiked: () => false,
+    },
+  },
 });
 
 export default client;

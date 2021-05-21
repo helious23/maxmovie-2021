@@ -5,9 +5,10 @@ import Movie from "../components/Movie";
 
 const GET_MOVIES = gql`
   {
-    movies {
+    movies(rating: 9.5, limit: 40) {
       id
       medium_cover_image
+      isLiked @client
     }
   }
 `;
@@ -59,13 +60,17 @@ export default () => {
         <Subtitle>I love GraphQL</Subtitle>
       </Header>
       {loading && <Loading>Loading...</Loading>}
-      {!loading && data.movies && (
-        <Movies>
-          {data.movies.map((movie) => (
-            <Movie key={movie.id} id={movie.id} bg={movie.medium_cover_image} />
-          ))}
-        </Movies>
-      )}
+
+      <Movies>
+        {data?.movies?.map((movie) => (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            isLiked={movie.isLiked}
+            bg={movie.medium_cover_image}
+          />
+        ))}
+      </Movies>
     </Container>
   );
 };
