@@ -5,7 +5,7 @@ import Movie from "../components/Movie";
 
 const GET_MOVIES = gql`
   {
-    movies(rating: 9.5, limit: 40) {
+    movies(rating: 9.5) {
       id
       medium_cover_image
       isLiked @client
