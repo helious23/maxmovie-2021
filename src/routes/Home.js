@@ -3,16 +3,6 @@ import { gql, useQuery } from "@apollo/client";
 import styled from "styled-components";
 import Movie from "../components/Movie";
 
-// query 작성
-const GET_MOVIES = gql`
-  {
-    movies(rating: 9.5) {
-      id
-      medium_cover_image
-      isLiked @client
-    }
-  }
-`;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,6 +42,18 @@ const Movies = styled.div`
   position: relative;
   top: -50px;
 `;
+
+// query 작성
+const GET_MOVIES = gql`
+  {
+    movies(rating: 9.5) {
+      id
+      medium_cover_image
+      isLiked @client
+    }
+  }
+`;
+
 export default () => {
   const { loading, data } = useQuery(GET_MOVIES); // query 에 useQuery react hook 사용
   return (

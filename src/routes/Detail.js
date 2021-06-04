@@ -63,7 +63,9 @@ const SPoster = styled.div`
 
 const GET_MOVIE = gql`
   query getMovie($id: Int!) {
+    #  변수가 있을 경우에는 query query이름($변수: type!) 없으면 생략
     movie(id: $id) {
+      # 변수와 연결
       id
       title
       medium_cover_image
@@ -80,9 +82,9 @@ const GET_MOVIE = gql`
 `;
 
 export default () => {
-  const { id } = useParams();
+  const { id } = useParams(); // url 의 parameter 가지고 옴
   const { loading, data } = useQuery(GET_MOVIE, {
-    variables: { id: parseInt(id) },
+    variables: { id: parseInt(id) }, // 변수 지정
   });
 
   return (
